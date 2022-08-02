@@ -29,7 +29,8 @@ const HeaderComponent = () => {
                     <Avatar sx={{
                         width: "35px",
                         height: "35px"
-                    }} alt="Remy Sharp" src="https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png" />
+                    }}
+                        alt="Remy Sharp" src="https://w7.pngwing.com/pngs/754/2/png-transparent-samsung-galaxy-a8-a8-user-login-telephone-avatar-pawn-blue-angle-sphere-thumbnail.png" />
                 </IconButton>
                 <Menu
                     id="menu-appbar"

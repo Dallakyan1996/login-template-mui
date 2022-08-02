@@ -20,22 +20,25 @@ function App(props) {
     currentUserLocal = JSON.parse(localStorage.getItem(loginTokenStorage))
   }, [])
   useEffect(() => {
-    if (!currentUserLocal) {
-      const { from } = { from: { pathname: "/login" } };
-      history.push(from);
-    }
+    // if (!currentUserLocal) {
+    //   const { from } = { from: { pathname: "/login" } };
+    //   history.push(from);
+    // }
   }, [location])
   const { currentUser } = state
   return (
     <div className="App">
-
       {currentUser && <>
-        <HeaderComponent />
-        <SideBarComponent/>
-        <Routes history={history}>
-          <Route exact path="/dashboard" element={<div>test</div>} />
-          <Route element={<div>not found</div>} />
-        </Routes>
+        <div style={{ width: "100%", height: "100%" }}>
+          <HeaderComponent />
+          <div style={{ display: "flex" }}>
+            <SideBarComponent />
+            <Routes history={history}>
+              <Route exact path="/dashboard" element={<div>test</div>} />
+              <Route element={<div>not found</div>} />
+            </Routes>
+          </div>
+        </div>
       </>}
       {!currentUser &&
         <LoginPageComponent />
