@@ -6,8 +6,6 @@ const customStyles = {
         style: {
             backgroundColor: "white",
             fontSize: "12px",
-            // paddingLeft: "0 8rem",
-            // justifyContent: "center",
             borderTop: "solid",
             borderColor: "#2C28281C",
             borderWidth: "1px",
@@ -116,15 +114,13 @@ const DashboardComponent = () => {
         <DataTable
             onRowClicked={handleRowClicked}
             title=""
-            // expandableRows={true}
             pagination={true}
             columns={columns}
             data={data}
             customStyles={customStyles}
             filter={true}
-            // clearSelectedRows={true}
             conditionalRowStyles={conditionalRowStyles}
-            paginationPerPage={10}
+            paginationPerPage={5}
             paginationRowsPerPageOptions={[5, 10, 15]}
         />
     </div>

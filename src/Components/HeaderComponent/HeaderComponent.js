@@ -1,5 +1,4 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
@@ -49,12 +48,11 @@ const HeaderComponent = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-
-                <MenuItem sx={{ mt: '45px', position: "absolute", top: "156px !important" }}
-                    onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" onClick={() => {
+                <MenuItem sx={{ position: "absolute", }}
+                    onClick={() => {
                         apiService.logout()
-                    }}>Log Out</Typography>
+                    }}>
+                    <Typography textAlign="center" >Log Out</Typography>
                 </MenuItem>
             </Menu>
         </Toolbar>

@@ -3,7 +3,7 @@ import LoginPageComponent from './Components/LoginPageComponent/LoginPageCompone
 import HeaderComponent from './Components/HeaderComponent/HeaderComponent';
 import { loginTokenStorage } from './Utils/constants';
 import { useEffect, useState } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { history } from './Components/helpers/history';
 import { apiService } from './API/API';
 // import { useLocation } from 'react-router-dom';
@@ -30,24 +30,36 @@ function App() {
           <div style={{ display: "flex" }}>
             <SideBarComponent />
             <div className='appContent'>
-              <Routes history={history}>
+              <Routes>
                 <Route exact path="/dashboard" element={<DashboardComponent />} />
-                <Route exact path="/" element={<div>home</div>} />
-                <Route component={<div>not found</div>} />
+                <Route exact path="/" element={<input
+                  type="text"
+                  aria-label={"labelText"}
+                  aria-required="true"
+                  // onChange={onchangeHandler}
+                  // value={inputValue}
+                  name="name"
+                />} />
+                {/* <Route component={<div>not found</div>} /> */}
+                <Route
+                  path="*"
+                  element={
+                    <main style={{ padding: "1rem" }}>
+                      <div>not found</div>
+                    </main>
+                  }
+                />
               </Routes>
             </div>
           </div>
         </div>
       </>}
-
-    </div>
-  );
-
-
-
-
-
-  
+      {
+        !currentUser &&
+        <LoginPageComponent />
+      }
+    </div >
+  )
 }
 
 export default App;
