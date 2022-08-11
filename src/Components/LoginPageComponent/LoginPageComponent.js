@@ -7,11 +7,10 @@ import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { apiService } from '../../API/API';
-import { useLocation } from 'react-router-dom';
 import { history } from '../helpers/history';
 
 const LoginPageComponent = (props) => {
-    const location = useLocation();
+    let [error,setError] = useState("")
     let [loginObj, setLoginObj] = useState({
         validationPass: false,
         validationEmail: false,
@@ -30,7 +29,7 @@ const LoginPageComponent = (props) => {
             <AppBar position="static" >
                 <Toolbar sx={{ backgroundColor: "#365ab4", }}>
                     <Typography variant="h4" component="div" sx={{ flexGrow: 1, height: "6rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        A1AT Conditional Follow Up
+                        Page Name On Header
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -92,8 +91,9 @@ const LoginPageComponent = (props) => {
                                         apiService.login(loginObj.email, loginObj.password).then((response) => {
                                             const { from } = { from: { pathname: "/" } };
                                             history.push(from);
-                                        })
+                                        }).catch(e => setError(e))
                                     }}>Log In</Button>
+                                    {error}
                             </Box>
                         </Stack>
                     </Box>

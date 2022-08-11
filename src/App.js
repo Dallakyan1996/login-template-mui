@@ -10,6 +10,7 @@ import { apiService } from './API/API';
 import SideBarComponent from './SideBarComponent.js/SideBarComponent';
 import DashboardComponent from './Components/DashboardComponent/DashboardComponent';
 import './App.css';
+import PageNotFound from './Components/PageNotFound/PageNotFound.js';
 
 function App() {
   let [state, setState] = useState({
@@ -44,9 +45,7 @@ function App() {
                 <Route
                   path="*"
                   element={
-                    <main style={{ padding: "1rem" }}>
-                      <div>not found</div>
-                    </main>
+                    <PageNotFound />
                   }
                 />
               </Routes>
@@ -58,7 +57,7 @@ function App() {
         !currentUser &&
         <LoginPageComponent />
       }
-    </div >
+    </div>
   )
 }
 
