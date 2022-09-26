@@ -34,11 +34,8 @@ function App() {
                   type="text"
                   aria-label={"labelText"}
                   aria-required="true"
-                  // onChange={onchangeHandler}
-                  // value={inputValue}
                   name="name"
                 />} />
-                {/* <Route component={<div>not found</div>} /> */}
                 <Route
                   path="*"
                   element={
