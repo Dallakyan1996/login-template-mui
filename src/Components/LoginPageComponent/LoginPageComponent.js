@@ -7,10 +7,11 @@ import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { apiService } from '../../API/API';
-import { history } from '../helpers/history';
+import { history } from '../../utils/helpers/history';
+import Alert from '@mui/material/Alert';
 
 const LoginPageComponent = (props) => {
-    let [error,setError] = useState("")
+    let [errorText, setErrorText] = useState("")
     let [loginObj, setLoginObj] = useState({
         validationPass: false,
         validationEmail: false,
@@ -62,6 +63,7 @@ const LoginPageComponent = (props) => {
                                 id="email"
                                 label={(!loginObj.email && loginObj.validationEmail) ? "Email is required" : "Email"}
                                 variant="outlined" onChange={(e) => {
+                                    setErrorText("")
                                     setLoginObj({
                                         ...loginObj,
                                         email: e.target.value,
@@ -73,6 +75,7 @@ const LoginPageComponent = (props) => {
                                 type="password" id="password"
                                 label={(!loginObj.password && loginObj.validationPass) ? "Password is required" : "Password"}
                                 variant="outlined" onChange={(e) => {
+                                    setErrorText("")
                                     setLoginObj({
                                         ...loginObj,
                                         password: e.target.value,
@@ -82,18 +85,26 @@ const LoginPageComponent = (props) => {
                             <Box sx={{
                                 display: "flex",
                                 justifyContent: "center",
+                                flexDirection: "column",
+                                alignItems: "center"
                             }}>
+                                {errorText && <Stack sx={{ width: '100%', paddingBottom: "10px" }} spacing={2}>
+                                    <Alert severity="error">{errorText}</Alert>
+                                </Stack>}
                                 <Button variant="contained" sx={{
                                     width: "10rem",
                                     height: "3rem"
                                 }}
                                     onClick={() => {
                                         apiService.login(loginObj.email, loginObj.password).then((response) => {
-                                            const { from } = { from: { pathname: "/" } };
-                                            history.push(from);
-                                        }).catch(e => setError(e))
+                                            if (response.ok) {
+                                                const { from } = { from: { pathname: "/" } };
+                                                history.push(from);
+                                            } else {
+                                                setErrorText(response.statusText)
+                                            }
+                                        })
                                     }}>Log In</Button>
-                                    {error}
                             </Box>
                         </Stack>
                     </Box>

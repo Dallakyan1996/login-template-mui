@@ -16,9 +16,9 @@ const SideBarComponent = () => {
 
     return <Box sx={{
         width: "10rem",
-        height: "calc(100vh - 3rem)",
+        height: "calc(100vh - 3.3rem)",
         backgroundColor: "#365ab4",
-        marginTop: '0.6rem',
+        marginTop: "10px",
         display: "flex",
         flexDirection: "column",
     }}>

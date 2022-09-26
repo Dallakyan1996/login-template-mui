@@ -1,8 +1,8 @@
 import { BehaviorSubject } from 'rxjs';
 // import { history } from './../helpers/history';
 // import { handleResponse } from '../Components/helpers/hendle-response';
-import { loginTokenStorage } from '../Utils/constants';
-import { history } from '../Components/helpers/history';
+import { loginTokenStorage } from '../utils/constants';
+import { history } from '../utils/helpers/history';
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem(loginTokenStorage)));
 
 export const apiService = {
@@ -23,14 +23,18 @@ function login(email, password) {
     };
 
     return fetch(process.env.REACT_APP_LOGIN_API, requestOptions)
-        // .then(handleResponse)
-        .then(user => {
-            user.json().then(data => {
-                localStorage.setItem(loginTokenStorage, JSON.stringify(data));
-                currentUserSubject.next(data);
-            });
-            return user;
-        });
+        // .then(handleResponse.err)
+        .then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    localStorage.setItem(loginTokenStorage, JSON.stringify(data));
+                    currentUserSubject.next(data);
+                });
+                return response;
+            } else {
+                return response;
+            }
+        }).catch(e => console.log(e));
 }
 
 function logout() {
