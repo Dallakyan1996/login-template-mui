@@ -40,6 +40,6 @@ function login(email, password) {
 function logout() {
     localStorage.removeItem(loginTokenStorage);
     currentUserSubject.next(null);
-    const { from } = { from: { pathname: "/login" } };
+    const { from } = { from: { pathname: "/" } };
     history.push(from);
 }

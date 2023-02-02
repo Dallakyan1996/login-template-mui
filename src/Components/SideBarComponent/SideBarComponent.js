@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { BiAperture } from "react-icons/bi";
+import { sideBarArr } from './side_bar_arr';
 import { NavLink } from 'react-router-dom';
 import './side_bar.css'
 
@@ -22,18 +22,16 @@ const SideBarComponent = () => {
         display: "flex",
         flexDirection: "column",
     }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-            <NavLink activeclassname='is_active' to="/" style={styleSideBarItem}>
-                <BiAperture fill="white" style={{ fontSize: "15px" }} />
-                <span style={{ paddingLeft: "10px", fontSize: "15px" }}>Home</span>
-            </NavLink>
-        </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-            <NavLink activeclassname='active' to="/dashboard" style={styleSideBarItem}>
-                <BiAperture fill="white" style={{ fontSize: "15px" }} />
-                <span style={{ paddingLeft: "10px", fontSize: "15px" }}>Dashboard</span>
-            </NavLink>
-        </div>
+        {
+            sideBarArr.map((item) => {
+                return <div style={{ display: "flex", alignItems: "center" }} key={Math.random() + new Date()}>
+                    <NavLink activeclassname='is_active' to={item.route} style={styleSideBarItem}>
+                        {item.icon}
+                        <span style={{ paddingLeft: "10px", fontSize: "15px" }}>{item.name}</span>
+                    </NavLink>
+                </div>
+            })
+        }
     </Box>
 }
 

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Menu, MenuItem } from "@material-ui/core";
 import { apiService } from '../../API/API';
 import { loginTokenStorage } from '../../utils/constants';
+import './header.css'
 
 const HeaderComponent = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -22,8 +23,13 @@ const HeaderComponent = () => {
 
     return (
         <Toolbar disableGutters sx={{
-            flexGrow: 0, minHeight: "42px !important", paddingTop: "10px", width: "100%",
-            alignItems: "center !important", backgroundColor: "white", display: "flex", justifyContent: "space-between"
+            flexGrow: 0, width: "100%",
+            alignItems: "center !important",
+            backgroundColor: "white",
+            minHeight: "20px !important",
+            marginTop: "5px",
+            display: "flex",
+            justifyContent: "space-between"
         }}>
             <img style={{ width: "4rem" }} src="https://logo-download.com/wp-content/data/images/svg/Babylon.js-logo.svg" alt="PCT logo"></img>
             <Typography variant="h6" sx={{ color: "#365ab4", marginLeft: "15px", }}>Page Name On Header</Typography>
@@ -40,17 +46,18 @@ const HeaderComponent = () => {
                 anchorEl={anchorElUser}
                 anchorOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'right'
                 }}
                 keepMounted
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'right'
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
+                sx={{ top:"505px !importnant"}}
             >
-                <MenuItem sx={{ position: "absolute", display: "flex" }}
+                <MenuItem sx={{ position: "absolute", display: "flex",top:"505px !importnant" }}
                     onClick={() => {
                         apiService.logout()
                     }}>

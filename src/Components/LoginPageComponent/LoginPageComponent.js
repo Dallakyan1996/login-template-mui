@@ -38,7 +38,7 @@ const LoginPageComponent = (props) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                minHeight="100vh - 8rem"
+                minHeight="100vh - 6rem"
             >
                 <Box
                     centered
@@ -91,7 +91,8 @@ const LoginPageComponent = (props) => {
                                 {errorText && <Stack sx={{ width: '100%', paddingBottom: "10px" }} spacing={2}>
                                     <Alert severity="error">{errorText}</Alert>
                                 </Stack>}
-                                <Button variant="contained" sx={{
+                                <Button variant="contained" 
+                                sx={{
                                     width: "10rem",
                                     height: "3rem"
                                 }}
